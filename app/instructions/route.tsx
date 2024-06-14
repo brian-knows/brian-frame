@@ -9,6 +9,8 @@ const handleRequest = frames(async (ctx) => {
     imageOptions: {
       aspectRatio: "1:1",
     },
+
+    
     buttons: [
       <Button action="post" key="1" target={vercelURL()}>
         ⏪ Go back
