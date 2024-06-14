@@ -10,7 +10,7 @@ const handleRequest = frames(async (ctx) => {
       aspectRatio: "1:1",
     },
     buttons: [
-      <Button action="post" key="1" target={`/`}>
+      <Button action="post" key="1" target={vercelURL()}>
         ⏪ Go back
       </Button>,
       <Button action="post" key="2" target={`/captcha`}>
