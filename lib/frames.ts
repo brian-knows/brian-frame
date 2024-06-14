@@ -24,7 +24,7 @@ export const frames = createFrames({
       }
       try {
         await pinataFdk.sendAnalytics(
-          "brian-frame",
+          process.env.FRAME_ANALYTICS_KEY,
           body,
           `${url.pathname.split("/").join("_")}`
         );
