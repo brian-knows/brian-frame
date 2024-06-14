@@ -12,9 +12,6 @@ const handleRequest = frames(async (ctx) => {
 
     
     buttons: [
-      <Button action="post" key="1" target={vercelURL()}>
-        ⏪ Go back
-      </Button>,
       <Button action="post" key="2" target={`/captcha`}>
         🤖 Start
       </Button>,
