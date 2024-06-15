@@ -429,10 +429,10 @@
   resolved "https://registry.yarnpkg.com/@fastify/busboy/-/busboy-2.1.1.tgz#b9da6a878a371829a0502c9b6c1c143ef6663f4d"
   integrity sha512-vBZP4NlzfOlerQTnba4aqZoMhE/a9HY7HRqoOPaETQcSQuWEIyZMHGfVu6w9wGtGK5fED5qRs2DteVCjOH60sA==
 
-"@frames.js/debugger@^0.2.1":
-  version "0.2.12"
-  resolved "https://registry.yarnpkg.com/@frames.js/debugger/-/debugger-0.2.12.tgz#067fc6b50baa92471138a233e1d93a9f8f311f40"
-  integrity sha512-STIrC2rEzRjpjc5D5qm0SjWgWFcgCkMBNCzg7H1Hy4rjdCeZHjsc8WSTKi7ExZ5CIVoTXVb47Cgjr4wwEe/Yyg==
+"@frames.js/debugger@^0.2.7":
+  version "0.2.13"
+  resolved "https://registry.yarnpkg.com/@frames.js/debugger/-/debugger-0.2.13.tgz#1a6c96a4afc2fa39d37ab81b3e1b72679dcb7e8d"
+  integrity sha512-vSMCto1c16iSRGscL+1z0sG58XHMSw70CWxbwNoUNdzay1ZQmbtUlpuH8aAH7V4GU2K+Ricyaq1jul/DvBOuZQ==
   dependencies:
     "@lens-protocol/client" "2.0.0"
     "@xmtp/xmtp-js" "^11.4.1"
@@ -3370,10 +3370,10 @@ fraction.js@^4.3.7:
   resolved "https://registry.yarnpkg.com/fraction.js/-/fraction.js-4.3.7.tgz#06ca0085157e42fda7f9e726e79fefc4068840f7"
   integrity sha512-ZsDfxO51wGAXREY55a7la9LScWpwv9RxIrYABrlvOFBlH/ShPnrtsXeuUIfXKKOVicNxQ+o8JTbJvjS4M89yew==
 
-frames.js@^0.16.5:
-  version "0.16.5"
-  resolved "https://registry.yarnpkg.com/frames.js/-/frames.js-0.16.5.tgz#5c501198e93a35db01837c11e764aa6a00d250f1"
-  integrity sha512-GhN96mU29d5torOTNbXEpv8PPGVA7E3gqzxr/NEZ7+ZQLajTN+uF0/jZGf/5z2axAdR7R8uVmq5buSF8CGAtUA==
+frames.js@^0.15.2:
+  version "0.15.3"
+  resolved "https://registry.yarnpkg.com/frames.js/-/frames.js-0.15.3.tgz#cb75c6038d66ef6c633edfdfed205060bcbd5c6a"
+  integrity sha512-u6y+VjX0sSD5QsP0iu8eLsK25kpRPQvhFEKUZjriXJCSLxYazecDESNrZcecmp0nXHvFlNOqMEt6eU45H0tHoA==
   dependencies:
     "@vercel/og" "^0.6.2"
     cheerio "^1.0.0-rc.12"
