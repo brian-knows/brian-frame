@@ -35,11 +35,12 @@ export const POST = async (req: Request) => {
   return NextResponse.json({
     chainId: "eip155:".concat(chainId!.toString()),
     method: "eth_sendTransaction",
+    attribution: false,
     params: {
       abi: ERC20_ABI,
       to: tokenAddress as `0x${string}`,
       data: approveData,
-      value: "0x0000000000000000000000000000000000000000",
+      value: BigInt(0).toString(),
     },
   });
 };
