@@ -31,9 +31,9 @@ export const POST = async (req: Request) => {
     method: "eth_sendTransaction",
     params: {
       abi: ERC20_ABI,
-      to: tokenAddress,
+      to: tokenAddress as `0x${string}`,
       data: approveData,
-      value: "0x",
+      value: BigInt(0).toString(),
     },
   });
 };
