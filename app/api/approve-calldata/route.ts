@@ -33,7 +33,7 @@ export const POST = async (req: Request) => {
       abi: ERC20_ABI,
       to: tokenAddress,
       data: approveData,
-      value: "0x0",
+      value: "0x",
     },
   });
 };
