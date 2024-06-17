@@ -41,6 +41,7 @@ export const getBrianTransactionCalldata = async (
   return {
     chainId: "eip155:".concat(fromChainId!.toString()),
     method: "eth_sendTransaction",
+    attribution: false,
     params: {
       abi: abi, 
       to: transactionToAddress,
