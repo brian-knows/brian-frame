@@ -18,13 +18,19 @@ export const POST = async (req: Request) => {
   const tokenAddress = transactionCalldataForUser.fromToken.address;
   const spender = transactionCalldataForUser.steps[0]?.to;
   const amount = transactionCalldataForUser.fromAmount;
+  console.log("tokenAddress", tokenAddress);
+  console.log("spender", spender);
+  console.log("amount", amount);
+
   const chainId = transactionCalldataForUser.steps[0]?.chainId;
+  console.log("chainId", chainId);
 
   const approveData = encodeFunctionData({
     abi: ERC20_ABI,
     functionName: "approve",
     args: [spender, amount],
   });
+  console.log("approveData", approveData);
 
   return NextResponse.json({
     chainId: "eip155:".concat(chainId!.toString()),
@@ -33,7 +39,7 @@ export const POST = async (req: Request) => {
       abi: ERC20_ABI,
       to: tokenAddress as `0x${string}`,
       data: approveData,
-      value: BigInt(0).toString(),
+      value: "0x0000000000000000000000000000000000000000",
     },
   });
 };
