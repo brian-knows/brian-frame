@@ -32,7 +32,7 @@ const handleRequest = frames(async (ctx) => {
       >
         🔗 Transaction
       </Button>,
-      <Button action="link" key="2" target={`https://brianknows.org`}>
+      <Button action="link" key="2" target={`https://docs.brianknows.org/`}>
         📚 Brian API
       </Button>,
       <Button
