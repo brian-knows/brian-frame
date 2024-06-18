@@ -14,6 +14,7 @@ const handleRequest = frames(async (ctx) => {
   const url = new URL(ctx.request.url);
   const { searchParams } = url;
   const requestId = searchParams.get("id");
+  const action = searchParams.get("action");
   const message = await getFrameMessage(body);
   const txData = await getBrianTransactionOptions(requestId!);
   const choiceIndex = message.buttonIndex - 1;
@@ -32,6 +33,11 @@ const handleRequest = frames(async (ctx) => {
         txData.result?.data.steps[0]!.chainId!
       )
     : BigInt(0);
+    if(action === "approve"){
+        // add a time delay here
+        await new Promise((r) => setTimeout(r, 8000));
+    }
+
   if (
     txData.result?.data.fromToken.address! !== NATIVE &&
     allowance < BigInt(txData.result?.data.fromAmount!)
@@ -79,11 +85,11 @@ const handleRequest = frames(async (ctx) => {
           action="tx"
           key="1"
           target={`/api/approve-calldata?id=${requestId}&choice=${choiceIndex}`}
-          post_url={`/confirm?id=${requestId}`}
+          post_url={`/confirm?id=${requestId}&action=${"approve"}`}
         >
           ✅ Approve
         </Button>,
-        <Button action="post" key="1" target={`/confirm?id=${requestId}`}>
+        <Button action="post" key="1" target={`/confirm?id=${requestId}&action=${"refresh"}`}>
           🔁 Refresh
         </Button>,
         <Button action="post" key="2" target={`/loading?id=${requestId}`}>

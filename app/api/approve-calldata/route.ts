@@ -18,19 +18,13 @@ export const POST = async (req: Request) => {
   const tokenAddress = transactionCalldataForUser.fromToken.address;
   const spender = transactionCalldataForUser.steps[0]?.to;
   const amount = transactionCalldataForUser.fromAmount;
-  console.log("tokenAddress", tokenAddress);
-  console.log("spender", spender);
-  console.log("amount", amount);
-
   const chainId = transactionCalldataForUser.steps[0]?.chainId;
-  console.log("chainId", chainId);
 
   const approveData = encodeFunctionData({
     abi: ERC20_ABI,
     functionName: "approve",
     args: [spender, amount],
   });
-  console.log("approveData", approveData);
 
   return NextResponse.json({
     chainId: "eip155:".concat(chainId!.toString()),

@@ -250,7 +250,7 @@ const handleRequest = frames(async (ctx) => {
         <Button
           action="post"
           key="1"
-          target={`/confirm?id=${requestId}`}
+          target={`/confirm?id=${requestId}&action=${"build"}`}
         >
           Execute Route
         </Button>,
@@ -263,7 +263,7 @@ const handleRequest = frames(async (ctx) => {
         </Button>,
       ] as any,
     };
-  } else if(txOptions!.action === "swap" || txOptions!.action === "bridge") {
+  } else if(txOptions!.action === "swap" || txOptions!.action === "bridge" || txOptions!.action === "unwrap native" || txOptions!.action === "wrap native") {
     return {
       postUrl: `/results?id=${requestId}`,
       image: (
@@ -310,7 +310,7 @@ const handleRequest = frames(async (ctx) => {
                 </div>
                 <div tw="flex">
                   <span tw="text-gray-500 mr-1">Solver:</span>{" "}
-                  {txOptions!.data.steps[0]!.protocol.name}
+                  {txOptions!.solver}
                 </div>
                 <div tw="flex">
                   <span tw="text-gray-500 mr-1">Receive min:</span>{" "}
@@ -336,7 +336,7 @@ const handleRequest = frames(async (ctx) => {
         <Button
           action="post"
           key="1"
-          target={`/confirm?id=${requestId}`}
+          target={`/confirm?id=${requestId}&action=${"build"}`}
         >
           Execute Route
         </Button>,

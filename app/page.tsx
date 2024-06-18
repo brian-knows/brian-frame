@@ -20,7 +20,7 @@ export async function generateMetadata() {
     imageAspectRatio: "1:1",
     buttons: [
       {
-        target: "https://brianknows.org",
+        target: "https://www.brianknows.org/",
         label: "📚 Brian API",
         action: "link",
       },
@@ -37,7 +37,6 @@ export async function generateMetadata() {
     ],
   };
   const frameMetadata = getFrameFlattened(frame);
-  console.log("Frame metadata", frameMetadata);
   return {
     title: "Brian Frame",
     other: {
