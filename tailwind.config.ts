@@ -8,12 +8,9 @@ const config = {
     "./app/**/*.{ts,tsx}",
     "./@/**/*.{ts,tsx}",
     "./src/**/*.{ts,tsx}",
-    // js files primarily because in dist
     "./node_modules/frames.js/dist/render/next/*.{ts,tsx,js,css}",
     "./node_modules/frames.js/dist/render/*.{ts,tsx,js,css}",
     "./node_modules/frames.js/dist/**/*.{ts,tsx,js,css}",
-
-    // monorepo weirdness
     "../../node_modules/frames.js/dist/render/next/*.{ts,tsx,js,css}",
     "../../node_modules/frames.js/dist/render/*.{ts,tsx,js,css}",
     "../../node_modules/frames.js/dist/**/*.{ts,tsx,js,css}",

@@ -10,9 +10,6 @@ const handleRequest = frames(async (ctx) => {
       aspectRatio: "1:1",
     },
     buttons: [
-      <Button action="post" key="1" target={`/`}>
-        ⏪ Go back
-      </Button>,
       <Button action="post" key="2" target={`/captcha`}>
         🤖 Start
       </Button>,

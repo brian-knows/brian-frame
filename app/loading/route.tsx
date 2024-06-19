@@ -47,6 +47,8 @@ const handleRequest = frames(async (ctx) => {
 
   const { result: txOptions, status: requestStatus } =
     await getBrianTransactionOptions(requestId!);
+    console.log(txOptions?.data, "txOptions?.data")
+
 
   if (requestStatus === TransactionCalldataRequestStatus.ERROR) {
     return {
@@ -115,7 +117,7 @@ const handleRequest = frames(async (ctx) => {
     };
   }
 
-  return {
+  /*return {
     postUrl: `/results?id=${requestId}`,
     image: (
       <div tw="relative flex items-center justify-center">
@@ -182,7 +184,189 @@ const handleRequest = frames(async (ctx) => {
         ↩️ Start over
       </Button>,
     ] as any,
-  };
+  };*/
+  // return image depending on the txOptions action
+  console.log(txOptions!.action, "txOptions!.action")
+  if(txOptions!.action === "transfer") {
+    return {
+      postUrl: `/results?id=${requestId}`,
+      image: (
+        <div tw="relative flex items-center justify-center">
+          <img
+            src={`${vercelURL()}/images/options-1.png`}
+            tw="absolute"
+            width="400px"
+            height="400px"
+          />
+          <div tw="text-white flex flex-col mt-16">
+            <div
+              key={txOptions!.action}
+              tw="flex flex-row items-center justify-start rounded-lg bg-[#030620] px-4 h-[110px] w-[350px] mb-4"
+            >
+              <div tw="flex flex-col items-center mr-4">
+                <img
+                  src={txOptions!.data.fromToken.logoURI}
+                  alt={`${txOptions!.data.fromToken.symbol} logo`}
+                  tw="w-6 h-6 mb-2"
+                />
+                <img
+                  src={txOptions!.data.toToken.logoURI}
+                  alt={`${txOptions!.data.toToken.symbol} logo`}
+                  tw="w-6 h-6"
+                />
+              </div>
+              <div tw="flex flex-col text-[10px]">
+                <div tw="flex">
+                  <span tw="text-gray-500 mr-1">From:</span>{" "}
+                  {txOptions!.data.fromToken.symbol}
+                </div>
+                <div tw="flex">
+                  <span tw="text-gray-500 mr-1">To:</span>{" "}
+                  {txOptions!.data.toToken.symbol}
+                </div>
+                <div tw="flex">
+                <span tw="text-gray-500 mr-1">From Chain ID:</span>{" "}
+                {txOptions!.data.fromChainId}
+                </div>
+                <div tw="flex">
+                  <span tw="text-gray-500 mr-1">To Chain ID:</span>{" "}
+                  {txOptions!.data.toChainId}
+                </div>
+              <div tw="flex">
+                <span tw="text-gray-500 mr-1">Receiver:</span>{" "}
+                {txOptions!.data.receiver}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    ),
+      imageOptions: {
+        aspectRatio: "1:1",
+        width: 400,
+        height: 400,
+      },
+      buttons: [
+        <Button
+          action="post"
+          key="1"
+          target={`/confirm?id=${requestId}&action=${"build"}`}
+        >
+          Execute Route
+        </Button>,
+        <Button
+          action="post"
+          key="2"
+          target={`/build?id=${requestId}&restart=true`}
+        >
+          ↩️ Start over
+        </Button>,
+      ] as any,
+    };
+  } else if(txOptions!.action === "swap" || txOptions!.action === "bridge" || txOptions!.action === "unwrap native" || txOptions!.action === "wrap native") {
+    return {
+      postUrl: `/results?id=${requestId}`,
+      image: (
+        <div tw="relative flex items-center justify-center">
+          <img
+            src={`${vercelURL()}/images/options-1.png`}
+            tw="absolute"
+            width="400px"
+            height="400px"
+          />
+          <div tw="text-white flex flex-col mt-16">
+            <div
+              key={txOptions!.action}
+              tw="flex flex-row items-center justify-start rounded-lg bg-[#030620] px-4 h-[110px] w-[350px] mb-4"
+            >
+              <div tw="flex flex-col items-center mr-4">
+                <img
+                  src={txOptions!.data.fromToken.logoURI}
+                  alt={`${txOptions!.data.fromToken.symbol} logo`}
+                  tw="w-6 h-6 mb-2"
+                />
+                <img
+                  src={txOptions!.data.toToken.logoURI}
+                  alt={`${txOptions!.data.toToken.symbol} logo`}
+                  tw="w-6 h-6"
+                />
+              </div>
+              <div tw="flex flex-col text-[10px]">
+                <div tw="flex">
+                  <span tw="text-gray-500 mr-1">From:</span>{" "}
+                  {txOptions!.data.fromToken.symbol}
+                </div>
+                <div tw="flex">
+                  <span tw="text-gray-500 mr-1">To:</span>{" "}
+                  {txOptions!.data.toToken.symbol}
+                </div>
+                <div tw="flex">
+                <span tw="text-gray-500 mr-1">From Chain ID:</span>{" "}
+                {txOptions!.data.fromChainId}
+                </div>
+                <div tw="flex">
+                  <span tw="text-gray-500 mr-1">To Chain ID:</span>{" "}
+                  {txOptions!.data.toChainId}
+                </div>
+                <div tw="flex">
+                  <span tw="text-gray-500 mr-1">Solver:</span>{" "}
+                  {txOptions!.solver}
+                </div>
+                <div tw="flex">
+                  <span tw="text-gray-500 mr-1">Receive min:</span>{" "}
+                  {Number(formatUnits(BigInt(txOptions!.data.toAmountMin), txOptions!.data.toToken.decimals).toString()).toFixed(8)}{" "}
+                  {txOptions!.data.toToken.symbol}{" "}
+                  <span tw="text-gray-500">({Number(txOptions!.data.toAmountUSD).toFixed(2)} USD)</span>
+                  </div>
+              <div tw="flex">
+                <span tw="text-gray-500 mr-1">Receiver:</span>{" "}
+                {txOptions!.data.receiver}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    ),
+      imageOptions: {
+        aspectRatio: "1:1",
+        width: 400,
+        height: 400,
+      },
+      buttons: [
+        <Button
+          action="post"
+          key="1"
+          target={`/confirm?id=${requestId}&action=${"build"}`}
+        >
+          Execute Route
+        </Button>,
+        <Button
+          action="post"
+          key="2"
+          target={`/build?id=${requestId}&restart=true`}
+        >
+          ↩️ Start over
+        </Button>,
+      ] as any,
+    };
+  } else {
+    return {
+      postUrl: "/results?id=${requestId}",
+      image: `${vercelURL()}/images/error.png`,
+      imageOptions: {
+        aspectRatio: "1:1",
+      },
+      buttons: [
+        <Button
+          action="post"
+          key="1"
+          target={`/build?id=${requestId}&restart=true`}
+        >
+          🔄 Try again
+        </Button>,
+      ],
+    };
+  } 
 });
 
 export const GET = handleRequest;

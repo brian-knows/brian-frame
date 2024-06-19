@@ -25,8 +25,6 @@ async function handler(req: NextRequest) {
     id
   );
 
-  console.log("Transaction calldata stored", storeBrianResultInKv);
-
   return NextResponse.json({ name: "Brian transaction stored" });
 }
 
