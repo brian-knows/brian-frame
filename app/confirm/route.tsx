@@ -35,7 +35,7 @@ const handleRequest = frames(async (ctx) => {
     : BigInt(0);
     if(action === "approve"){
         // add a time delay here
-        await new Promise((r) => setTimeout(r, 8000));
+        await new Promise((r) => setTimeout(r, 3000));
     }
 
   if (
